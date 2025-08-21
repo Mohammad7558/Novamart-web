@@ -3,7 +3,7 @@ import dbConnect from "@/lib/dbConnect";
 
 export async function POST(req) {
   try {
-    const body = await req.json(); // get request body
+    const body = await req.json();
     const collection = await dbConnect("products");
     const result = await collection.insertOne(body);
 
