@@ -3,7 +3,7 @@ import Hero from './components/Hero'
 import Products from './components/(homepageCom)/Products'
 
 
-export default function Page() {
+export default async function Page() {
   return (
     <div className='min-h-screen'>
       <Hero/>

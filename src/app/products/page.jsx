@@ -1,31 +1,52 @@
-"use client"
+"use client";
+import { getMethod } from "@/services/product";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
+
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
+    async function fetchProducts() {
+      const data = await getMethod();
+      setProducts(data);
+    }
+    fetchProducts();
   }, []);
+
   return (
-    <div className="min-h-screen bg-gray-100 p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {products.map((product) => (
-        <div
-          key={product.id}
-          className="bg-white shadow-md rounded-2xl p-5 border hover:shadow-lg transition"
-        >
-          <h2 className="text-xl font-bold text-gray-800">{product.name}</h2>
-          <p className="text-gray-600">{product.email}</p>
-          <p className="text-gray-500 text-sm">{product.phone}</p>
-          <p className="mt-2 text-blue-600 underline">{product.website}</p>
-          <p className="mt-2 text-gray-700">
-            {product.address.city}, {product.address.street}
-          </p>
-          <Link href={`/products/${product.id}`}>View More</Link>
-        </div>
-      ))}
+    <div className="min-h-screen bg-gray-100">
+      <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {products.map((product) => (
+          <div
+            key={product._id}
+            className="bg-white shadow-md rounded-2xl p-5 border hover:shadow-lg transition"
+          >
+            {/* Image */}
+            <img
+              src={product.image}
+              alt={product.name}
+              className="w-full h-40 object-cover rounded-xl mb-4"
+            />
+
+            {/* Product Info */}
+            <h2 className="text-xl font-bold text-gray-800">{product.name}</h2>
+            <p className="text-gray-600">{product.description}</p>
+            <p className="text-lg font-semibold text-green-600">
+              ${product.price}
+            </p>
+
+
+            {/* View More */}
+            <Link
+              href={`/products/${product._id}`}
+              className="inline-block mt-3 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+            >
+              View More
+            </Link>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

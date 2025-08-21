@@ -12,9 +12,10 @@ export default function Navbar() {
             </Link>
           </div>
           <div className="flex space-x-5">
+            <Link href="/">Home</Link>
             <Link href="/products">Products</Link>
             <Link href="/login">Login</Link>
-            <Link href='/dashboard'>Dashboard</Link>
+            <Link href='/dashboard/add-product'>Dashboard</Link>
           </div>
         </div>
       </header>
