@@ -19,7 +19,7 @@ export default function Products() {
   }, []);
 
   return (
-    <div className=" bg-gray-100 p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className=" bg-gray-100 p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {products.map((product) => (
         <div
           key={product._id}
@@ -29,14 +29,20 @@ export default function Products() {
           <img
             src={product.image}
             alt={product.name}
-            className="w-full h-40 object-cover rounded-xl mb-4"
+            className="w-full object-cover rounded-xl mb-4"
           />
 
           {/* Product Info */}
           <h2 className="text-xl font-bold text-gray-800">{product.name}</h2>
-          <p className="text-gray-600">{product.description}</p>
+          <p className="text-gray-600">
+            {product.description.length > 200
+              ? product.description.slice(0, 200) + "..."
+              : product.description}
+          </p>
           <p className="text-gray-500 text-sm">Category: {product.category}</p>
-          <p className="text-lg font-semibold text-green-600">${product.price}</p>
+          <p className="text-lg font-semibold text-green-600">
+            ${product.price}
+          </p>
 
           {/* Features */}
           <ul className="list-disc list-inside mt-2 text-gray-700 text-sm">
