@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js Auth & Product Dashboard
 
-## Getting Started
+This is a **Next.js project** with authentication using **NextAuth.js** and **MongoDB** as the database.
+It includes **login/signup functionality** and a protected dashboard route where users can add products.
 
-First, run the development server:
+---
+
+## 🚀 Getting Started
+
+First, clone the repo and install dependencies:
 
 ```bash
+git clone <your-repo-url>
+cd <your-project-folder>
+npm install
+
+
+MONGODB_URI=your_mongodb_connection_string
+NEXTAUTH_SECRET=your_secret_key
+NEXTAUTH_URL=http://localhost:3000
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+
+
+
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Routes Summary
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+/ → Landing/Home page
 
-## Learn More
+/login → User login (NextAuth)
 
-To learn more about Next.js, take a look at the following resources:
+/register → User signup
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+/dashboard → Private dashboard (requires login)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+/dashboard/add-product → Add product (protected route)
 
-## Deploy on Vercel
+/api/auth/[...nextauth] → NextAuth API route
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+/api/product → API endpoint for products
