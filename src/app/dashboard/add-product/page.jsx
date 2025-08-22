@@ -40,6 +40,7 @@ export default function AddProduct() {
 
       const newProduct = await addProduct(productData);
       console.log("Product added:", newProduct);
+      console.log(data);
       alert("Product added successfully!");
       reset();
     } catch (error) {
